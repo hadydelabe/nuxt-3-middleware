@@ -1,4 +1,16 @@
-<script setup></script>
+<script setup lang="ts">
+  definePageMeta({
+    middleware: function (to, from) {
+      const isAuthenticated = useCookie("is-authenticated");
+      const currentUser = useCookie("current-user");
+
+      isAuthenticated.value = undefined;
+      currentUser.value = undefined;
+
+      return navigateTo("/");
+    },
+  });
+</script>
 
 <template>
   <article class="grid">
